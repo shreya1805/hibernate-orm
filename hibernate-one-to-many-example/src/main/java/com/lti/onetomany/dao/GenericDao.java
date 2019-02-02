@@ -10,6 +10,7 @@ import com.hibernate.util.JPAUtil;
 import com.lti.onetomany.accountClass.Account;
 import com.lti.onetomany.accountClass.LogAccount;
 
+//Persistence Logic
 public class GenericDao {
 	public void store(Object obj) {  //depending upon whose object it is, it will call the query for that object class
 		
