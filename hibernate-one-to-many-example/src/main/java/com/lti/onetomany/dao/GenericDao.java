@@ -36,22 +36,27 @@ public class GenericDao {
 		//emf.close();
 	}
 	
-	public Account fetchById(int id) {
+
+	//Employee e=(Employee)dao.fetchById(Customer.class,123),
+	//public Object fetchById(Class classname,Object pk){
+	public <E> E fetchById(Class<E> classname, Object pk) {
 		EntityManagerFactory emf= JPAUtil.getEntityManagerFactory();
 		
 		EntityManager em = emf.createEntityManager();
 		try {
-			Account acc = em.find(Account.class, id); //Select query
-			return acc;
+			E e = em.find(classname, pk); //Select query
+			return e;
 		}finally {
 			em.close();
 		}
 	}
-	public List<LogAccount> fetchAll(){
+	
+	//Creating a Generic E and it is then mentioned inside List as List<E> to fetch the data related to the E
+	public <E> List<E> fetchAll(Class<E> clazz){
 		EntityManagerFactory emf= JPAUtil.getEntityManagerFactory();
 		EntityManager em= emf.createEntityManager();
 		try {
-			Query q= em.createQuery("select logacc from LogAccount as logacc");
+			Query q= em.createQuery("select obj from" + clazz.getName() + "as obj");
 			return q.getResultList();
 			
 		}
