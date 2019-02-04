@@ -27,7 +27,8 @@ public class GenericDao {
 		
 		//Now we can insert /update/delete/select whatever we want 
 		
-		em.merge(obj); //insert=persist method,update= merge method,delete=remove method, 
+		em.merge(obj); //insert=persist method,update= merge method,delete=remove method,
+		tx.commit();
 						// in this way there are different types of methods for every sql query	
 						// sometimes when the database is open then the auto commit flag is set to off
 		
@@ -59,7 +60,6 @@ public class GenericDao {
 		try {
 			Query q= em.createQuery("select obj from" + clazz.getName() + "as obj");
 			return q.getResultList();
-			
 		}
 		finally {
 			em.close();
