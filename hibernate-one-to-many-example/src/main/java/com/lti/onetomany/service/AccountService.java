@@ -100,6 +100,16 @@ public class AccountService {
 		return dao.fetchMiniStatement(acno);
 	}
 	
+	public List<LogAccount> miniStatementByName(String name) {
+		AccountDao dao = new AccountDao();
+		return dao.fetchMiniStatementByName(name);
+	}
+	
+	public List<Account> accountWithdraw(double amount, String transaction_type){
+		AccountDao dao = new AccountDao();
+		return dao.fetchAccounts(amount, transaction_type);
+	}
+	
 	public double balance(int acno) {
 		return 0;
 	}

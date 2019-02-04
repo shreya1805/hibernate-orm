@@ -42,8 +42,29 @@ public class TestAccount {
 	public void miniStatementTest() {
 		AccountService service = new AccountService();
 		List<LogAccount> list1= service.miniStatement(86);
+		System.out.println("Transaction No \t Transaction Type \t\t Date and Time \t\t\t Amount");
 		for(LogAccount list: list1) {
-			System.out.println(list.getAccount() + "\t" + list.getTxno() + "\t" + list.getType() + "\t" + list.getDateAndTime() + "\t" + list.getAmount());
+			System.out.println(list.getTxno() + "\t\t\t\t\t" + list.getType() + "\t\t\t" + list.getDateAndTime() + "\t" + list.getAmount());
+		}
+	}
+	
+	@Test
+	public void miniStatementTestByName() {
+		AccountService service = new AccountService();
+		List<LogAccount> list1= service.miniStatementByName("Shreya");
+		System.out.println("Transaction No \t Transaction Type \t\t Date and Time \t\t\t Amount");
+		for(LogAccount list: list1) {
+			System.out.println(list.getTxno() + "\t\t\t\t\t" + list.getType() + "\t\t\t" + list.getDateAndTime() + "\t" + list.getAmount());
+		}
+	}
+	
+	@Test
+	public void amountCheck() {
+		AccountService service = new AccountService();
+		List<Account> list2 = service.accountWithdraw(5000.00, "withdraw");
+		System.out.println("Account No \t Account Name \t Balance \t Account Type");
+		for(Account list: list2) {
+			System.out.println(list.getAcno() + "\t\t\t" + list.getName() + "\t\t\t" + list.getBalance() + "\t" + list.getType());
 		}
 	}
 }
